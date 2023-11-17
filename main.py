@@ -6,6 +6,7 @@ from deepface import DeepFace
 import threading
 import datetime
 import pymongo
+import time 
 
 camera = cv2.VideoCapture(0)
 window = st.image([])
@@ -50,6 +51,8 @@ def check_face(frame):
 
 
 counter = 0
+
+time.sleep(3)
 
 while run:
     success, frame = camera.read()
