@@ -1,0 +1,5 @@
+name: my_env
+channels:
+  - defaults
+dependencies:
+  - cmake==3.27.7
