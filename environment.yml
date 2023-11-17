@@ -2,4 +2,4 @@ channels:
   - defaults
 dependencies:
   - cmake
-  - opencv-python
+  - opencv
