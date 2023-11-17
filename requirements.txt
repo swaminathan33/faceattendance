@@ -1,6 +1,5 @@
 ﻿pip==21.3.1
 streamlit==1.28.2
-opencv-python-headless
 absl-py==2.0.0
 asgiref==3.7.2
 astunparse==1.6.3
