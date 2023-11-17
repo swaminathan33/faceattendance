@@ -1,5 +1,5 @@
 ﻿pip==21.3.1
-opencv-python==4.8.1.78
+opencv-python-headless
 absl-py==2.0.0
 asgiref==3.7.2
 astunparse==1.6.3
