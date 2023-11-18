@@ -52,8 +52,8 @@ def check_face(frame):
 
 def call(frame):
 
-    img1 = frame.to_ndarray(format='bgr24')
-    img = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
+    img = frame.to_ndarray(format='bgr24')
+    # img = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
     check_face(img)
 
@@ -62,7 +62,7 @@ def call(frame):
 
     else:
         cv2.putText(img, 'No Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
-    img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
+    # img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
 
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
