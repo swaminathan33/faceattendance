@@ -4,11 +4,13 @@ import streamlit as st
 import cv2
 from deepface import DeepFace
 import threading
+from streamlit_webrtc import webrtc_streamer
+import av
 import datetime
 import pymongo
-import time 
+import time
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(0)     #cv2.VideoCapture(0)
 window = st.image([])
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -50,26 +52,24 @@ def check_face(frame):
         face_match = False
 
 
-counter = 0
 
-time.sleep(3)
 
-while run:
-    success, frame = camera.read()
-    img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    if success:
-        if counter % 30 == 0:
-            try:
-                threading.Thread(target=check_face, args=(img.copy(),)).start()
-            except ValueError:
-                pass
-        counter += 1
+def call(frame):
 
-        if face_match:
-            cv2.putText(img, 'Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
+    img1 = frame.to_ndarray(format='bgr24')
+    img = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
-        else:
-            cv2.putText(img, 'No Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
+    check_face(img)
 
-    window.image(img)
+    if face_match:
+        cv2.putText(img, 'Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
+
+    else:
+        cv2.putText(img, 'No Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
+    img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)
+
+    return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+
+webrtc_streamer(key='example', video_frame_callback=call)
