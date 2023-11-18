@@ -5,7 +5,6 @@ streamlit-webrtc
 opencv-python-headless
 ffmpeg-python
 deepface
-opencv-contrib-python
 absl-py==2.0.0
 asgiref==3.7.2
 astunparse==1.6.3
