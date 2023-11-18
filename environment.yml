@@ -2,3 +2,4 @@ channels:
   - defaults
 dependencies:
   - cmake
+  - opencv
