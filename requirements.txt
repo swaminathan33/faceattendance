@@ -1,6 +1,7 @@
 pip==21.3.1
 streamlit==1.28.2
 pymongo
+opencv-python-headless
 streamlit-webrtc
 ffmpeg-python
 deepface
