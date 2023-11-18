@@ -10,14 +10,9 @@ import datetime
 import pymongo
 import time
 
-camera = cv2.VideoCapture(0)     #cv2.VideoCapture(0)
-window = st.image([])
-
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["camera"]
 mycol = mydb["attendance"]
-
-run = st.checkbox('Run')
 
 person1 = cv2.imread('./bill.jpeg')
 person2 = cv2.imread('./elon.jpeg')
