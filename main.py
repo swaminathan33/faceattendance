@@ -1,73 +1,16 @@
-# face attendance using streamlit
+# trying using streamlit webrtc
 
 import streamlit as st
-import cv2
-from deepface import DeepFace
-import threading
 from streamlit_webrtc import webrtc_streamer
+import numpy as np
 import av
-import datetime
-import pymongo
-import time
+import cv2
 
+def hello(frame):
+    img = frame.to_ndarray(format='bgr24')
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["camera"]
-mycol = mydb["attendance"]
+    cv2.putText(img, 'Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
 
+    return av.VideoFrame.from_ndarray(img, format="bgr24")
 
-person1 = cv2.imread('./bill.jpeg')
-person2 = cv2.imread('./elon.jpeg')
-attendant = set()
-
-face_match = False
-
-def recogniser(name):
-    if name not in attendant:
-        print(name)
-        attendant.add(name)
-        add = {
-            "name": name,
-            "time": datetime.datetime.now().ctime()
-        }
-        mycol.insert_one(add)
-
-def check_face(frame):
-    global face_match
-    try:
-        if DeepFace.verify(frame, person1)['verified']:
-            face_match = True
-            recogniser('bill')
-
-        elif DeepFace.verify(frame, person2)['verified']:
-            face_match = True
-            recogniser('elon')
-        else:
-            face_match = False
-
-    except ValueError:
-        face_match = False
-
-
-
-
-
-def call(frame):
-
-    if frame :
-        img = frame.to_ndarray(format='bgr24')
-
-        check_face(img)
-
-        if face_match:
-            cv2.putText(img, 'Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
-
-        else:
-            cv2.putText(img, 'No Match !', (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
-
-        return av.VideoFrame.from_ndarray(img, format="bgr24")
-    else:
-        st.write('not working!')
-
-
-webrtc_streamer(key='example', video_frame_callback=call)
+webrtc_streamer(key='hello', video_frame_callback=hello)
