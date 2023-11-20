@@ -5,5 +5,5 @@ dependencies:
   - streamlit
   - numpy
   - opencv
-  - pip
+  - pip:
     - streamlit-webrtc
