@@ -2,6 +2,7 @@ channels:
   - conda-forge
 dependencies:
   - dlib 
+  - pip==23.3.1
   - streamlit
   - numpy
   - opencv
