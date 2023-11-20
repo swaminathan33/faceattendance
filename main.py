@@ -6,6 +6,8 @@ import numpy as np
 import av
 import cv2
 
+SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
+
 def hello(frame):
     
     img = frame.to_ndarray(format='bgr24')
