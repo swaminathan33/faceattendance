@@ -1,4 +1,5 @@
 pip==21.3.1
+dlib-bin
 streamlit==1.28.2
 pymongo
 streamlit-webrtc
