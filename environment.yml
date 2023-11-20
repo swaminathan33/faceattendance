@@ -1,8 +1,9 @@
 channels:
-  - defaults
+  - conda-forge
 dependencies:
+  - dlib 
   - streamlit
-  - streamlit-webrtc
   - numpy
   - opencv
-  - dlib 
+  - pip
+    - streamlit-webrtc
