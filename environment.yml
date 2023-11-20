@@ -1,0 +1,8 @@
+channels:
+  - defaults
+dependencies:
+  - streamlit
+  - streamlit-webrtc
+  - numpy
+  - opencv
+  - dlib 
