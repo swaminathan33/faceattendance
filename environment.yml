@@ -1,5 +1,7 @@
 channels:
   - defaults
 dependencies:
+  - wheel 
   - cmake 
   - dlib 
+  - conda-forge 
