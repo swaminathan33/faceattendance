@@ -1,5 +1,3 @@
-dlib
-pip
 streamlit
 numpy
 streamlit-webrtc
